@@ -234,17 +234,18 @@ elif selected == "Sleep Disorder Predictor":
     # BMI calculation function
     def calculate_bmi(height, weight):
       bmi = weight / ((height/100) ** 2)
-      if bmi < 25.0:
-        return "Normal"
-      elif 25.0 <= bmi < 30.0:
-        return "Overweight"
-      else:
-        return "Obese"
+      return bmi
 
     # Validate inputs and calculate BMI
     if height > 0 and weight > 0:
-      BMI = calculate_bmi(height, weight)
-      st.write("Your BMI is", BMI)
+      bmi = calculate_bmi(height, weight)
+      if bmi < 25.0:
+         BMI = "Normal"
+      elif 25.0 <= bmi < 30.0:
+         BMI = "Overweight"
+      else:
+         BMI = "Obese"
+      st.write("Your BMI is", bmi,"("+BMI+")")
     else:
       st.warning("Please provide valid height and weight values.")
 
