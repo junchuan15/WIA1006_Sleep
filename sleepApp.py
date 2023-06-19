@@ -11,6 +11,9 @@ model1 = joblib.load(r"best_sleepefficiency_model.pkl")
 model2 = joblib.load(r"best_model_sleep_apnea.pkl")
 model3 = joblib.load(r"best_model_insomnia.pkl")
 
+gender_mapping = {'Yes': 1, 'No': 0}
+smoking_mapping = {'Yes': 1, 'No': 0}
+
 with st.sidebar:
     selected = option_menu(
         "Sweet Dream 💤 : Main Menu",
@@ -40,25 +43,19 @@ elif selected == "Sleep Efficiency Predictor":
     # Prompt the user for input
     age = st.number_input("Enter your age:", min_value=0, max_value=100)
     gender = st.radio("Choose your gender:", ("Male", "Female"))
-    sleep_duration = st.number_input(
-        "Enter your sleep duration (in hours):",
-        min_value=0.0,
-        max_value=24.0,
-        value=8.0,
-    )
+    sleep_duration = st.number_input("Enter your sleep duration (in hours):",min_value=0.0,max_value=24.0,value=8.0,)
     valid_input = False
     while not valid_input:
         rem_percentage = st.slider(
-            "Percentage of REM sleep:", min_value=0.0, max_value=100.0
-        )
-        max_deep_percentage = 100.0 - rem_percentage
+            "Percentage of REM sleep:", min_value=0, max_value=100)
+        max_deep_percentage = 100 - rem_percentage
         deep_percentage = st.slider(
             "Percentage of deep sleep:",
-            min_value=0.0,
+            min_value=0,
             max_value=max_deep_percentage,
-            value=0.0,
+            value=0,
         )
-        light_percentage = 100.0 - rem_percentage - deep_percentage
+        light_percentage = 100 - rem_percentage - deep_percentage
 
         # Check if the sum of rem_percentage, deep_percentage, and light_percentage is 100
         sleep_percentage_sum = rem_percentage + deep_percentage + light_percentage
@@ -77,73 +74,70 @@ elif selected == "Sleep Efficiency Predictor":
 
     awakenings = st.number_input("Enter the number of awakenings:", min_value=0)
     caffeine_consumption = st.number_input(
-        "Enter your caffeine consumption (in mg):", min_value=0, value=0
+        "Enter your caffeine consumption (in mg):", min_value=0.0, value=0.0
     )
     alcohol_consumption = st.number_input(
-        "Enter your alcohol consumption (in standard drinks):", min_value=0, value=0
+        "Enter your alcohol consumption (unit):", min_value=0, value=0
     )
     smoking_status = st.selectbox("Choose your smoking status:", ("No", "Yes"))
     exercise_frequency = st.selectbox(
         "Choose your exercise frequency (days per week):", (0, 1, 2, 3, 4, 5, 6, 7)
     )
+    
+    gender_val = gender_mapping[gender]
+    smoking_val = smoking_mapping[smoking_status]
+    awakenings_float = float(awakenings) if awakenings else 0.0
+    alcohol_float = float(alcohol_consumption) if alcohol_consumption else 0.0
+    exercise_frequency_float = float(exercise_frequency) if exercise_frequency else 0.0
 
+   
+        # Create a dictionary with the user input
+    user_input = {
+            "Age": [age],
+            "Gender": [gender_val],
+            "Sleep duration": [sleep_duration],
+            "REM sleep percentage": [rem_percentage],
+            "Deep sleep percentage": [deep_percentage],
+            "Light sleep percentage": [light_percentage],
+            "Awakenings": [awakenings_float],
+            "Caffeine consumption": [caffeine_consumption],
+            "Alcohol consumption": [alcohol_float],
+            "Smoking status": [smoking_val],
+            "Exercise frequency": [exercise_frequency_float],
+    }
+
+    user_input_df=pd.DataFrame(user_input)
+    
     # Display a button to trigger the prediction
     if st.button("Predict Sleep Efficiency"):
-        # Create a dictionary with the user input
-        user_input = {
-            "Age": age,
-            "Gender": gender,
-            "Sleep duration": sleep_duration,
-            "REM sleep percentage": rem_percentage,
-            "Deep sleep percentage": deep_percentage,
-            "Light sleep percentage": light_percentage,
-            "Awakenings": awakenings,
-            "Caffeine consumption": caffeine_consumption,
-            "Alcohol consumption": alcohol_consumption,
-            "Smoking status": smoking_status,
-            "Exercise frequency": exercise_frequency,
-        }
 
-        # Convert 'Male' to 1 and 'Female' to 0 in 'Gender'
-        user_input["Gender"] = 1 if user_input["Gender"] == "Male" else 0
-
-        # Convert 'Yes' to 1 and 'No' to 0 in 'Smoking status'
-        user_input["Smoking status"] = 1 if user_input["Smoking status"] == "Yes" else 0
-
-        # Convert user input to a 1D array
-        input_array = np.array(list(user_input.values()))
-
-        # Reshape the input array to 2D
-        input_array = input_array.reshape(1, -1)
-
-        # Perform Min-Max scaling on numeric features
-        numeric_features = [
-            "Age",
-            "Sleep duration",
-            "REM sleep percentage",
-            "Deep sleep percentage",
-            "Light sleep percentage",
-            "Awakenings",
-            "Caffeine consumption",
-            "Alcohol consumption",
-            "Exercise frequency",
-        ]
         scaler = MinMaxScaler()
-        scaled_input = scaler.fit_transform(input_array)
 
-        # Convert the scaled input back to a dictionary
-        scaled_input_dict = dict(zip(numeric_features, scaled_input.flatten()))
+        # Create a StandardScaler object
+        scaler = StandardScaler()
 
-        # Update the user input dictionary with the scaled values
-        user_input.update(scaled_input_dict)
+        # Perform standardization on the user_input_df DataFrame
+        scaled_user_input = scaler.fit_transform(user_input_df)
 
-        # Convert user input to a 1D array
-        input_array = np.array(list(user_input.values()))
+        # Convert the scaled user input back to a DataFrame
+        scaled_user_input_df = pd.DataFrame(scaled_user_input, columns=user_input_df.columns)
+       
+       # Check the number of features in scaled_user_input_df
+        num_features_expected = model1.input_shape[1]  # Replace with the actual number of features expected by model1
+        num_features_actual = scaled_user_input_df.shape[1]
 
-        # Reshape the input array to 2D
-        input_array = input_array.reshape(1, -1)
+       # Compare the number of features
+        if num_features_actual != num_features_expected:
+           st.error("The number of features in the input data does not match the expected number of features.")
+        else:
+        # Convert the scaled_user_input_df DataFrame to a NumPy array
+           input_array = scaled_user_input_df.values
 
-        # Perform the prediction using the trained model
+        # Reshape the input array if necessary
+        if len(input_array.shape) == 1:
+          input_array = input_array.reshape(1, -1)
+
+        # Perform the prediction using model1
         predicted_sleep_efficiency = model1.predict(input_array)
 
         # Classify the predicted sleep efficiency into categories
@@ -172,9 +166,9 @@ elif selected == "Sleep Efficiency Predictor":
         )
         st.write(message)
         
-    # Print the preprocessed input for debugging
-    st.write("Preprocessed Input:")
-    st.write(input_array)
+        # Print the preprocessed input for debugging
+        st.write("Preprocessed Input:")
+        st.write(user_input)
 
 elif selected == "Sleep Disorder Predictor":
     st.title("Sweet Dream 💤")
