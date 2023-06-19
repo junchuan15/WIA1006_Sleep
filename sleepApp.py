@@ -16,15 +16,15 @@ with st.sidebar:
     image2 = Image.open("Logo.png")
     st.image(image2, use_column_width=True)
     selected = option_menu(
-        "Sweet Dream 💤 : Main Menu",
+        "Sweet Dream 💤 :      Main Menu",
         ["🥱 Introduction", "😴 Sleep Efficiency Predictor", "😪 Sleep Disorder Predictor"],
         default_index=0
     )
     
     
-if selected == "Introduction":
+if selected == "🥱 Introduction":
     st.title("Sweet Dream 💤")
-    st.header("🥱 Introduction")
+    st.header("Introduction")
     image = Image.open("107117795-1663089124744-GettyImages-1322786038.jpg")
     st.image(image, use_column_width=True)
     st.header("__________________________________________")
