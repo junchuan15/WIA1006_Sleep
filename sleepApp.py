@@ -45,20 +45,14 @@ if selected == "🥱 Introduction":
     st.markdown(text2)
 
 elif selected == "😴 Sleep Efficiency Predictor":
-     with st.sidebar:
-        st.subheader("Sidebar Menu")
-        option = st.radio(
-            "Navigate to:",
-            ["About", "Predictor"],
-            index=0,
-            key="sidebar_option",
-        )
+     menu_options = ["About", "Predictor"]
+     option = st.radio("Menu:", menu_options, index=0)
 
-        if option == "About":
+     if option == "About":
             st.subheader("About Sleep Efficiency Predictor")
         # Add content about the sleep efficiency predictor
 
-        elif option == "Predictor":
+     elif option == "Predictor":
         # Prompt the user for input
             age = st.number_input("Enter your age:", min_value=0, max_value=100)
             gender = st.radio("Choose your gender:", ("Male", "Female"))
