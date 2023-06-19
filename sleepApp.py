@@ -7,9 +7,9 @@ from streamlit_option_menu import option_menu
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 # Load the saved model
-model1 = joblib.load(r"C:\UM\Y1S2\WID 3006 MACHINE LEARNING\Assignment\model.pkl")
-model2 = joblib.load(r"C:\UM\Y1S2\WID 3006 MACHINE LEARNING\Assignment\best_model_sleep_apnea.pkl")
-model3 = joblib.load(r"C:\UM\Y1S2\WID 3006 MACHINE LEARNING\Assignment\best_model_insomnia.pkl")
+model1 = joblib.load(r"model.pkl")
+model2 = joblib.load(r"best_model_sleep_apnea.pkl")
+model3 = joblib.load(r"best_model_insomnia.pkl")
 
 with st.sidebar:
         selected = option_menu('Sweet Dream 💤 : Main Menu',
