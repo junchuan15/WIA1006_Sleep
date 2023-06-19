@@ -110,23 +110,16 @@ elif selected == "Sleep Efficiency Predictor":
     # Display a button to trigger the prediction
     if st.button("Predict Sleep Efficiency"):
 
-        scaler = StandardScaler()
-
-        # Perform standardization on the user_input_df DataFrame
-        scaled_user_input = scaler.fit_transform(user_input_df)
-
-        # Convert the scaled user input back to a DataFrame
-        scaled_user_input_df = pd.DataFrame(scaled_user_input, columns=user_input_df.columns)
        
        # Check the number of features in scaled_user_input_df
         num_features_expected = 11
-        num_features_actual = scaled_user_input_df.shape[1]
+        num_features_actual = user_input_df.shape[1]
 
        # Compare the number of features
         if num_features_actual != num_features_expected:
            st.error("The number of features in the input data does not match the expected number of features.")
         else:
-           input_array = scaled_user_input_df.values
+           input_array = user_input_df.values
            if len(input_array.shape) == 1:
             input_array = input_array.reshape(1, -1)
            predicted_sleep_efficiency = model1.predict(input_array)
@@ -162,8 +155,6 @@ elif selected == "Sleep Efficiency Predictor":
            st.write(user_input_df)
            st.write("Number of Features:")
            st.write(num_features_actual)
-           st.write("Scaled Input:")
-           st.write(scaled_user_input_df)
            st.write("Predicted Sleep Efficiency:")
            st.write(predicted_sleep_efficiency)
 
