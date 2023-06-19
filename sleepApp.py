@@ -2,6 +2,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 import numpy as np
+import Image
 import matplotlib.pyplot as plt
 from streamlit_option_menu import option_menu
 from sklearn.preprocessing import StandardScaler
@@ -20,6 +21,8 @@ with st.sidebar:
 if selected == "Introduction":
     st.title("Sweet Dream 💤")
     st.header("Introduction")
+    image = Image.open("C:\UM\Y1S2\WID 3006 MACHINE LEARNING\Assignment\WIA1006_Sleep\WIA1006_Sleep\107117795-1663089124744-GettyImages-1322786038.jpg")
+    st.image(image, caption="Your Image", use_column_width=True)
     st.header("__________________________________________")
     text = """
     Welcome to our Sweet Dream - your ultimate sleep companion! We understand the importance of quality sleep for your well-being. With our powerful tool, you'll receive valuable insights into your sleep health. We provide you with the sleep efficiency, which measures how well you're sleeping, along with the percentage risk of sleep apnea and insomnia.
@@ -32,6 +35,10 @@ if selected == "Introduction":
         """
     st.markdown(text)
     st.header("__________________________________________")
+    text2 = """
+    By： Quah Jun Chuan, Vinnie Tiang Wen Ying, Humyra Tasmia, Leow Khai Vern, Chan Kai Wen 
+    """
+    st.markdown(text2)
 
 elif selected == "Sleep Efficiency Predictor":
     st.title("Sweet Dream 💤")
@@ -246,10 +253,10 @@ elif selected == "Sleep Disorder Predictor":
 
     # Systolic and diastolic pressure inputs
     systolic_pressure = st.number_input(
-        "Set your systolic pressure:", min_value=0, max_value=200
+        "Set your systolic pressure（mm HG):", min_value=50, max_value=200
     )
     diastolic_pressure = st.number_input(
-        "Set your diastolic pressure:", min_value=0, max_value=200
+        "Set your diastolic pressure (mm HG):", min_value=50, max_value=150
     )
 
     if st.button("Predict Sleep Disease"):
