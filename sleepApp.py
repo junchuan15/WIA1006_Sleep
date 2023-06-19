@@ -47,7 +47,12 @@ if selected == "🥱 Introduction":
 elif selected == "😴 Sleep Efficiency Predictor":
     st.title("Sweet Dream 💤")
     st.header("Sleep Efficiency Predictor")
-
+    option = st.radio(
+    "Sleep Efficiency:",
+    ["About", "Predictor"],
+    index=0,
+    layout="horizontal",
+    )
     # Prompt the user for input
     age = st.number_input("Enter your age:", min_value=0, max_value=100)
     gender = st.radio("Choose your gender:", ("Male", "Female"))
