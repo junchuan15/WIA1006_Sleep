@@ -46,13 +46,13 @@ if selected == "🥱 Introduction":
 
 elif selected == "😴 Sleep Efficiency Predictor":
      menu_options = ["About", "Predictor"]
-     option = st.button("Menu:", menu_options, index=0)
+     
 
-     if option == "About":
+     if st.button == "About":
             st.subheader("About Sleep Efficiency Predictor")
         # Add content about the sleep efficiency predictor
 
-     elif option == "Predictor":
+     elif st.button == "Predictor":
         # Prompt the user for input
             age = st.number_input("Enter your age:", min_value=0, max_value=100)
             gender = st.radio("Choose your gender:", ("Male", "Female"))
