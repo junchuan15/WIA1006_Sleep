@@ -128,7 +128,7 @@ elif selected == "Sleep Efficiency Predictor":
            if predicted_sleep_efficiency < 0.3:
                 sleep_efficiency_class = "Poor Sleep Efficiency"
                 message = "Your predicted sleep efficiency indicates poor sleep quality. We recommend consulting a healthcare professional to assess your sleep health and provide guidance on improving your sleep quality."
-           elif predicted_sleep_efficiency <= 0.7:
+           elif predicted_sleep_efficiency <= 0.8:
                 sleep_efficiency_class = "Average Sleep Efficiency"
                 message = "Your predicted sleep efficiency suggests average sleep quality. We recommend you to maintain a regular sleep schedule and take note of your lifestyle habits such as avoiding alcoholic drinks and exercise regularly."
            else:
