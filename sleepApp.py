@@ -129,43 +129,43 @@ elif selected == "Sleep Efficiency Predictor":
            input_array = scaled_user_input_df.values
            if len(input_array.shape) == 1:
             input_array = input_array.reshape(1, -1)
-            predicted_sleep_efficiency = model1.predict(input_array)
+           predicted_sleep_efficiency = model1.predict(input_array)
 
         # Classify the predicted sleep efficiency into categories
-            if predicted_sleep_efficiency < 0.3:
+           if predicted_sleep_efficiency < 0.3:
                 sleep_efficiency_class = "Poor Sleep Efficiency"
                 message = "Your predicted sleep efficiency indicates poor sleep quality. We recommend consulting a healthcare professional to assess your sleep health and provide guidance on improving your sleep quality."
-            elif predicted_sleep_efficiency <= 0.7:
+           elif predicted_sleep_efficiency <= 0.7:
                 sleep_efficiency_class = "Average Sleep Efficiency"
                 message = "Your predicted sleep efficiency suggests average sleep quality. We recommend you to maintain a regular sleep schedule and take note of your lifestyle habits such as avoiding alcoholic drinks and exercise regularly."
-            else:
+           else:
                 sleep_efficiency_class = "Good Sleep Efficiency"
                 message = "Congratulations! Your predicted sleep efficiency indicates good sleep quality. Keep it up!"
 
             # Display the prediction and sleep efficiency class
-            st.markdown(
+           st.markdown(
             "<h1 style='text-align: center; font-size: 24px;'>Sleep Efficiency Percentage: {}%</h1>".format(
                 round(predicted_sleep_efficiency[0] * 100, 2)
             ),
             unsafe_allow_html=True,
             )
-            st.markdown(
+           st.markdown(
             "<h2 style='text-align: center; font-size: 24px;'>{}</h2>".format(
                 sleep_efficiency_class
             ),
             unsafe_allow_html=True,
-            )
-            st.write(message)
+           )
+           st.write(message)
         
             # Print the preprocessed input for debugging
-            st.write("User Input:")
-            st.write(user_input_df)
-            st.write("Number of Features:")
-            st.write(num_features_actual)
-            st.write("Scaled Input:")
-            st.write(scaled_user_input_df)
-            st.write("Predicted Sleep Efficiency:")
-            st.write(predicted_sleep_efficiency)
+           st.write("User Input:")
+           st.write(user_input_df)
+           st.write("Number of Features:")
+           st.write(num_features_actual)
+           st.write("Scaled Input:")
+           st.write(scaled_user_input_df)
+           st.write("Predicted Sleep Efficiency:")
+           st.write(predicted_sleep_efficiency)
 
 elif selected == "Sleep Disorder Predictor":
     st.title("Sweet Dream 💤")
