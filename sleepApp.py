@@ -119,7 +119,7 @@ elif selected == "😴 Sleep Efficiency Predictor":
     user_input_df = pd.DataFrame(user_input)
     
     if st.button("Predict Sleep Efficiency"):
-    with st.spinner("Predicting Sleep Efficiency..."):
+     with st.spinner("Predicting Sleep Efficiency..."):
         try:
             # Check the number of features in scaled_user_input_df
             num_features_expected = 11
