@@ -254,8 +254,8 @@ elif selected == "Sleep Disorder Predictor":
 
     if st.button("Predict Sleep Disease"):
         user_input = {
-            "Age": age,
             "Gender": gender,
+            "Age": age,
             "Occupation": "Occupation_" + occupation,
             "Sleep duration": sleep_duration,
             "Quality of Sleep": sleep_quality,
@@ -311,15 +311,11 @@ elif selected == "Sleep Disorder Predictor":
 
         # Convert user input to a 1D array
         input_array = np.array(list(user_input.values()))
-        
-        # Print the user input for debugging
-        st.write("User Input:")
-        st.write(input_array)
 
         # Reshape the input array to 2D
         input_array = input_array.reshape(1, -1)
 
-        # Perform the prediction using the trained KNN model
+        # Perform the prediction
         predicted_sleep_apnea = model2.predict(input_array)
         predicted_sleep_insomnia = model3.predict(input_array)
 
