@@ -323,13 +323,13 @@ elif selected == "Sleep Disorder Predictor":
         
             # Get the predicted probabilities
         if hasattr(model2, "predict_proba"):
-            sleep_apnea_probabilities = model2.predict_proba(input_array)
+            sleep_apnea_probabilities = model2.predict_proba(input_array1)
         else:
             # Handle case when predict_proba is not available
             sleep_apnea_probabilities = None
 
         if hasattr(model3, "predict_proba"):
-            insomnia_probabilities = model3.predict_proba(input_array)
+            insomnia_probabilities = model3.predict_proba(input_array2)
         else:
             # Handle case when predict_proba is not available
             insomnia_probabilities = None
