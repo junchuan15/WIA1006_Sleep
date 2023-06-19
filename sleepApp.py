@@ -328,15 +328,6 @@ elif selected == "Sleep Disorder Predictor":
             "Diastolic Pressure",
         ]
 
-        scaler = StandardScaler()
-        scaled_input = scaler.fit_transform(input_array)
-
-        # Convert the scaled input back to a dictionary
-        scaled_input_dict = dict(zip(numeric_features, scaled_input.flatten()))
-
-        # Update the user input dictionary with the scaled values
-        user_input.update(scaled_input_dict)
-
         # Convert user input to a 1D array
         input_array = np.array(list(user_input.values()))
 
