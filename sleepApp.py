@@ -2,10 +2,10 @@ import streamlit as st
 import joblib
 import pandas as pd
 import numpy as np
-import Image
+from PIL import Image
 import matplotlib.pyplot as plt
 from streamlit_option_menu import option_menu
-from sklearn.preprocessing import StandardScaler
+
 
 # Load the saved model
 model1 = joblib.load(r"best_sleepefficiency_model.pkl")
