@@ -268,6 +268,10 @@ elif selected == "Sleep Disorder Predictor":
             "Diastolic Pressure": diastolic_pressure,
         }
 
+          # Print the user input for debugging
+        st.write("User Input:")
+        st.write(user_input)
+
         # Convert 'Male' to 1 and 'Female' to 0 in 'Gender'
         user_input["Gender"] = 1 if user_input["Gender"] == "Male" else 0
 
@@ -306,27 +310,6 @@ elif selected == "Sleep Disorder Predictor":
 
         # Remove the 'Occupation' key from user_input
         user_input.pop("Occupation")
-
-        # Convert user input to a 1D array
-        input_array = np.array(list(user_input.values()))
-
-        # Reshape the input array to 2D
-        input_array = input_array.reshape(1, -1)
-
-        # Perform Min-Max scaling on numeric features
-        numeric_features = [
-            "Gender",
-            "Age",
-            "Sleep duration",
-            "Quality of Sleep",
-            "Physical Activity Level",
-            "Stress Level",
-            "BMI Category",
-            "Heart Rate",
-            "Daily Steps",
-            "Systolic Pressure",
-            "Diastolic Pressure",
-        ]
 
         # Convert user input to a 1D array
         input_array = np.array(list(user_input.values()))
