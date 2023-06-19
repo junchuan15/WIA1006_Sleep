@@ -4,3 +4,4 @@ pandas
 numpy
 matplotlib
 streamlit-option-menu
+scikit-learn
