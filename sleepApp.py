@@ -315,7 +315,8 @@ elif selected == "Sleep Disorder Predictor":
         # Reshape the input array to 2D
         input_array1 = input_array.reshape(1, -1)
         input_array2 = input_array.reshape(1, -1)
-
+        st.write(input_array1)
+        st.write(input_array2)
         # Perform the prediction for both class
         predicted_sleep_apnea = model2.predict(input_array1)
         predicted_sleep_insomnia = model3.predict(input_array2)
