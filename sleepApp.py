@@ -137,14 +137,14 @@ elif selected == "😴 Sleep Efficiency Predictor":
 
         # Classify the predicted sleep efficiency into categories
         if predicted_sleep_efficiency < 0.3:
-                sleep_efficiency_class = "Poor Sleep Efficiency"
-                message = "Your predicted sleep efficiency indicates poor sleep quality. We recommend consulting a healthcare professional to assess your sleep health and provide guidance on improving your sleep quality."
+            sleep_efficiency_class = "Poor Sleep Efficiency"
+            message = "Your predicted sleep efficiency indicates poor sleep quality. We recommend consulting a healthcare professional to assess your sleep health and provide guidance on improving your sleep quality."
         elif predicted_sleep_efficiency <= 0.8:
-                sleep_efficiency_class = "Average Sleep Efficiency"
-                message = "Your predicted sleep efficiency suggests average sleep quality. We recommend you to maintain a regular sleep schedule and take note of your lifestyle habits such as avoiding alcoholic drinks and exercise regularly."
+            sleep_efficiency_class = "Average Sleep Efficiency"
+            message = "Your predicted sleep efficiency suggests average sleep quality. We recommend you to maintain a regular sleep schedule and take note of your lifestyle habits such as avoiding alcoholic drinks and exercise regularly."
         else:
-                sleep_efficiency_class = "Good Sleep Efficiency"
-                message = "Congratulations! Your predicted sleep efficiency indicates good sleep quality. Keep it up!"
+            sleep_efficiency_class = "Good Sleep Efficiency"
+            message = "Congratulations! Your predicted sleep efficiency indicates good sleep quality. Keep it up!"
 
             # Display the prediction and sleep efficiency class
         st.markdown(
