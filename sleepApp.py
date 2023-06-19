@@ -90,22 +90,22 @@ elif selected == "Sleep Efficiency Predictor":
     exercise_frequency_float = float(exercise_frequency) if exercise_frequency else 0.0
 
    
-        # Create a dictionary with the user input
+      # Create a dictionary with the user input
     user_input = {
-            "Age": [age],
-            "Gender": [gender_val],
-            "Sleep duration": [sleep_duration],
-            "REM sleep percentage": [rem_percentage],
-            "Deep sleep percentage": [deep_percentage],
-            "Light sleep percentage": [light_percentage],
-            "Awakenings": [awakenings_float],
-            "Caffeine consumption": [caffeine_consumption],
-            "Alcohol consumption": [alcohol_float],
-            "Smoking status": [smoking_val],
-            "Exercise frequency": [exercise_frequency_float],
-            }
+    "Age": [age],
+    "Gender": [gender_val],
+    "Sleep duration": [sleep_duration],
+    "REM sleep percentage": [rem_percentage],
+    "Deep sleep percentage": [deep_percentage],
+    "Light sleep percentage": [light_percentage],
+    "Awakenings": [awakenings_float],
+    "Caffeine consumption": [caffeine_consumption],
+    "Alcohol consumption": [alcohol_float],
+    "Smoking status": [smoking_val],
+    "Exercise frequency": [exercise_frequency_float],
+    }
 
-    user_input_df=pd.DataFrame(user_input)
+    user_input_df = pd.DataFrame(user_input)
     
     # Display a button to trigger the prediction
     if st.button("Predict Sleep Efficiency"):
@@ -158,8 +158,14 @@ elif selected == "Sleep Efficiency Predictor":
             st.write(message)
         
             # Print the preprocessed input for debugging
-            st.write("Preprocessed Input:")
-            st.write(user_input)
+            st.write("User Input:")
+            st.write(user_input_df)
+            st.write("Number of Features:")
+            st.write(num_features_actual)
+            st.write("Scaled Input:")
+            st.write(scaled_user_input_df)
+            st.write("Predicted Sleep Efficiency:")
+            st.write(predicted_sleep_efficiency)
 
 elif selected == "Sleep Disorder Predictor":
     st.title("Sweet Dream 💤")
