@@ -315,34 +315,31 @@ elif selected == "Sleep Disorder Predictor":
         # Reshape the input array to 2D
         input_array1 = input_array.reshape(1, -1)
         input_array2 = input_array.reshape(1, -1)
-        st.write(input_array1)
-        st.write(input_array2)
+
         # Perform the prediction for both class
         predicted_sleep_apnea = model2.predict(input_array1)
         predicted_sleep_insomnia = model3.predict(input_array2)
 
-        # Get the predicted probabilities
+        
+            # Get the predicted probabilities
         if hasattr(model2, "predict_proba"):
-            sleep_apnea_probabilities = model2.predict_proba(input_array1)
+            sleep_apnea_probabilities = model2.predict_proba(input_array)
         else:
             # Handle case when predict_proba is not available
             sleep_apnea_probabilities = None
 
         if hasattr(model3, "predict_proba"):
-            insomnia_probabilities = model3.predict_proba(input_array2)
+            insomnia_probabilities = model3.predict_proba(input_array)
         else:
             # Handle case when predict_proba is not available
             insomnia_probabilities = None
 
-    
         # Check if probabilities are available and display the probability of class 1
         if sleep_apnea_probabilities is not None:
             sleep_apnea_probability = sleep_apnea_probabilities[0][1]
             st.write("Risk of Sleep Apnea: {:.2%}".format(sleep_apnea_probability))
             if sleep_apnea_probability > 0.5:
-                st.write(
-                    "High risk of Sleep Apnea. It is recommended to consult a healthcare professional for further evaluation and appropriate treatment."
-                )
+                st.write("High risk of Sleep Apnea. It is recommended to consult a healthcare professional for further evaluation and appropriate treatment.")
             else:
                 st.write("Low risk of Sleep Apnea.")
 
@@ -350,8 +347,7 @@ elif selected == "Sleep Disorder Predictor":
             insomnia_probability = insomnia_probabilities[0][1]
             st.write("Risk of Insomnia: {:.2%}".format(insomnia_probability))
             if insomnia_probability > 0.5:
-                st.write(
-                    "High risk of Insomnia. It is advisable to consult a healthcare professional or sleep specialist to discuss your sleep difficulties and explore potential treatment options."
-                )
+                st.write("High risk of Insomnia. It is advisable to consult a healthcare professional or sleep specialist to discuss your sleep difficulties and explore potential treatment options.")
             else:
                 st.write("Low risk of Insomnia.")
+    
