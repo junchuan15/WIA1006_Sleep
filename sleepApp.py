@@ -22,7 +22,7 @@ if selected == "Introduction":
     st.title("Sweet Dream 💤")
     st.header("Introduction")
     image = Image.open("107117795-1663089124744-GettyImages-1322786038.jpg")
-    st.image(image, caption="Your Image", use_column_width=True)
+    st.image(image, se_column_width=True)
     st.header("__________________________________________")
     text = """
     Welcome to our Sweet Dream - your ultimate sleep companion! We understand the importance of quality sleep for your well-being. With our powerful tool, you'll receive valuable insights into your sleep health. We provide you with the sleep efficiency, which measures how well you're sleeping, along with the percentage risk of sleep apnea and insomnia.
