@@ -315,7 +315,7 @@ elif selected == "Sleep Disorder Predictor":
         # Reshape the input array to 2D
         input_array = input_array.reshape(1, -1)
 
-        # Perform the prediction
+        # Perform the prediction for both class
         predicted_sleep_apnea = model2.predict(input_array)
         predicted_sleep_insomnia = model3.predict(input_array)
 
@@ -332,6 +332,10 @@ elif selected == "Sleep Disorder Predictor":
             # Handle case when predict_proba is not available
             insomnia_probabilities = None
 
+        st.write("Predicted Sleep Apnea:", predicted_sleep_apnea)
+        st.write("Predicted Insomnia:", predicted_sleep_insomnia)
+        st.write("Sleep Apnea Probabilities:", sleep_apnea_probabilities)
+        st.write("Insomnia Probabilities:", insomnia_probabilities)
         # Check if probabilities are available and display the probability of class 1
         if sleep_apnea_probabilities is not None:
             sleep_apnea_probability = sleep_apnea_probabilities[0][1]
