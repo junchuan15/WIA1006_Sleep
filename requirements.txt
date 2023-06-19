@@ -1,4 +1,6 @@
+streamlit
 joblib
 pandas
 numpy
 matplotlib
+streamlit-option-menu
