@@ -103,7 +103,7 @@ elif selected == "Sleep Efficiency Predictor":
             "Alcohol consumption": [alcohol_float],
             "Smoking status": [smoking_val],
             "Exercise frequency": [exercise_frequency_float],
-    }
+            }
 
     user_input_df=pd.DataFrame(user_input)
     
@@ -126,45 +126,40 @@ elif selected == "Sleep Efficiency Predictor":
         if num_features_actual != num_features_expected:
            st.error("The number of features in the input data does not match the expected number of features.")
         else:
-        # Convert the scaled_user_input_df DataFrame to a NumPy array
            input_array = scaled_user_input_df.values
-
-        # Reshape the input array if necessary
-        if len(input_array.shape) == 1:
-          input_array = input_array.reshape(1, -1)
-
-        # Perform the prediction using model1
-        predicted_sleep_efficiency = model1.predict(input_array)
+           if len(input_array.shape) == 1:
+            input_array = input_array.reshape(1, -1)
+            predicted_sleep_efficiency = model1.predict(input_array)
 
         # Classify the predicted sleep efficiency into categories
-        if predicted_sleep_efficiency < 0.3:
-            sleep_efficiency_class = "Poor Sleep Efficiency"
-            message = "Your predicted sleep efficiency indicates poor sleep quality. We recommend consulting a healthcare professional to assess your sleep health and provide guidance on improving your sleep quality."
-        elif predicted_sleep_efficiency <= 0.7:
-            sleep_efficiency_class = "Average Sleep Efficiency"
-            message = "Your predicted sleep efficiency suggests average sleep quality. We recommend you to maintain a regular sleep schedule and take note of your lifestyle habits such as avoiding alcoholic drinks and exercise regularly."
-        else:
-            sleep_efficiency_class = "Good Sleep Efficiency"
-            message = "Congratulations! Your predicted sleep efficiency indicates good sleep quality. Keep it up!"
+            if predicted_sleep_efficiency < 0.3:
+                sleep_efficiency_class = "Poor Sleep Efficiency"
+                message = "Your predicted sleep efficiency indicates poor sleep quality. We recommend consulting a healthcare professional to assess your sleep health and provide guidance on improving your sleep quality."
+            elif predicted_sleep_efficiency <= 0.7:
+                sleep_efficiency_class = "Average Sleep Efficiency"
+                message = "Your predicted sleep efficiency suggests average sleep quality. We recommend you to maintain a regular sleep schedule and take note of your lifestyle habits such as avoiding alcoholic drinks and exercise regularly."
+            else:
+                sleep_efficiency_class = "Good Sleep Efficiency"
+                message = "Congratulations! Your predicted sleep efficiency indicates good sleep quality. Keep it up!"
 
-        # Display the prediction and sleep efficiency class
-        st.markdown(
+            # Display the prediction and sleep efficiency class
+            st.markdown(
             "<h1 style='text-align: center; font-size: 24px;'>Sleep Efficiency Percentage: {}%</h1>".format(
                 round(predicted_sleep_efficiency[0] * 100, 2)
             ),
             unsafe_allow_html=True,
-        )
-        st.markdown(
+            )
+            st.markdown(
             "<h2 style='text-align: center; font-size: 24px;'>{}</h2>".format(
                 sleep_efficiency_class
             ),
             unsafe_allow_html=True,
-        )
-        st.write(message)
+            )
+            st.write(message)
         
-        # Print the preprocessed input for debugging
-        st.write("Preprocessed Input:")
-        st.write(user_input)
+            # Print the preprocessed input for debugging
+            st.write("Preprocessed Input:")
+            st.write(user_input)
 
 elif selected == "Sleep Disorder Predictor":
     st.title("Sweet Dream 💤")
