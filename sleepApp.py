@@ -313,29 +313,27 @@ elif selected == "Sleep Disorder Predictor":
         input_array = np.array(list(user_input.values()))
 
         # Reshape the input array to 2D
-        input_array = input_array.reshape(1, -1)
+        input_array1 = input_array.reshape(1, -1)
+        input_array2 = input_array.reshape(1, -1)
 
         # Perform the prediction for both class
-        predicted_sleep_apnea = model2.predict(input_array)
-        predicted_sleep_insomnia = model3.predict(input_array)
+        predicted_sleep_apnea = model2.predict(input_array1)
+        predicted_sleep_insomnia = model3.predict(input_array2)
 
         # Get the predicted probabilities
         if hasattr(model2, "predict_proba"):
-            sleep_apnea_probabilities = model2.predict_proba(input_array)
+            sleep_apnea_probabilities = model2.predict_proba(input_array1)
         else:
             # Handle case when predict_proba is not available
             sleep_apnea_probabilities = None
 
         if hasattr(model3, "predict_proba"):
-            insomnia_probabilities = model3.predict_proba(input_array)
+            insomnia_probabilities = model3.predict_proba(input_array2)
         else:
             # Handle case when predict_proba is not available
             insomnia_probabilities = None
 
-        st.write("Predicted Sleep Apnea:", predicted_sleep_apnea)
-        st.write("Predicted Insomnia:", predicted_sleep_insomnia)
-        st.write("Sleep Apnea Probabilities:", sleep_apnea_probabilities)
-        st.write("Insomnia Probabilities:", insomnia_probabilities)
+    
         # Check if probabilities are available and display the probability of class 1
         if sleep_apnea_probabilities is not None:
             sleep_apnea_probability = sleep_apnea_probabilities[0][1]
