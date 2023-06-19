@@ -7,7 +7,7 @@ from streamlit_option_menu import option_menu
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 # Load the saved model
-model1 = joblib.load(r"model.pkl")
+model1 = joblib.load(r"best_sleepefficiency_model.pkl")
 model2 = joblib.load(r"best_model_sleep_apnea.pkl")
 model3 = joblib.load(r"best_model_insomnia.pkl")
 
@@ -20,7 +20,7 @@ with st.sidebar:
 if selected == "Introduction":
     st.title("Sweet Dream 💤")
     st.header("Introduction")
-    st.header("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ")
+    st.header("__________________________________________")
     text = """
     Welcome to our Sweet Dream - your ultimate sleep companion! We understand the importance of quality sleep for your well-being. With our powerful tool, you'll receive valuable insights into your sleep health. We provide you with the sleep efficiency, which measures how well you're sleeping, along with the percentage risk of sleep apnea and insomnia.
 
@@ -31,7 +31,7 @@ if selected == "Introduction":
     Discover the power of our Sweet Dream! Gain a better understanding of your sleep quality with the sleep efficiency coefficient and stay ahead of potential sleep apnea and insomnia risks with the percentage risk estimation. Start your journey to better sleep and improved well-being now!
         """
     st.markdown(text)
-    st.header("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ")
+    st.header("__________________________________________")
 
 elif selected == "Sleep Efficiency Predictor":
     st.title("Sweet Dream 💤")
@@ -171,6 +171,10 @@ elif selected == "Sleep Efficiency Predictor":
             unsafe_allow_html=True,
         )
         st.write(message)
+        
+    # Print the preprocessed input for debugging
+    st.write("Preprocessed Input:")
+    st.write(input_array)
 
 elif selected == "Sleep Disorder Predictor":
     st.title("Sweet Dream 💤")
