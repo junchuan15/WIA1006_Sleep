@@ -14,13 +14,15 @@ model3 = joblib.load(r"best_model_insomnia.pkl")
 
 with st.sidebar:
     selected = option_menu(
+        image2 = Image.open("Logo.png")
+        st.image(image2, use_column_width=True)
         "Sweet Dream 💤 : Main Menu",
         ["🥱 Introduction", "😴 Sleep Efficiency Predictor", "😪 Sleep Disorder Predictor"],
         default_index=0,
     )
 if selected == "Introduction":
     st.title("Sweet Dream 💤")
-    st.header("Introduction")
+    st.header("🥱 Introduction")
     image = Image.open("107117795-1663089124744-GettyImages-1322786038.jpg")
     st.image(image, use_column_width=True)
     st.header("__________________________________________")
@@ -40,7 +42,7 @@ if selected == "Introduction":
     """
     st.markdown(text2)
 
-elif selected == "Sleep Efficiency Predictor":
+elif selected == "😴 Sleep Efficiency Predictor":
     st.title("Sweet Dream 💤")
     st.header("Sleep Efficiency Predictor")
 
@@ -165,7 +167,7 @@ elif selected == "Sleep Efficiency Predictor":
            st.write("Predicted Sleep Efficiency:")
            st.write(predicted_sleep_efficiency)
 
-elif selected == "Sleep Disorder Predictor":
+elif selected == "😪 Sleep Disorder Predictor":
     st.title("Sweet Dream 💤") 
     st.header("Sleep Disorder Predictor [Imsomnia / Sleep Apnea]")
   
