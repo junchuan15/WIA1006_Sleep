@@ -119,7 +119,7 @@ elif selected == "Sleep Efficiency Predictor":
         scaled_user_input_df = pd.DataFrame(scaled_user_input, columns=user_input_df.columns)
        
        # Check the number of features in scaled_user_input_df
-        num_features_expected = model1.input_shape[1]  # Replace with the actual number of features expected by model1
+        num_features_expected = 11
         num_features_actual = scaled_user_input_df.shape[1]
 
        # Compare the number of features
