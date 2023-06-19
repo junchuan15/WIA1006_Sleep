@@ -13,7 +13,7 @@ model2 = joblib.load(r"best_model_sleep_apnea.pkl")
 model3 = joblib.load(r"best_model_insomnia.pkl")
 
 with st.sidebar:
-    image2 = Image.open("Logo.jpg")
+    image2 = Image.open("Logo.png")
     st.image(image2, use_column_width=True)
     selected = option_menu(
         "Sweet Dream 💤 : Main Menu",
