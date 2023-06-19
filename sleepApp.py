@@ -13,9 +13,11 @@ model2 = joblib.load(r"best_model_sleep_apnea.pkl")
 model3 = joblib.load(r"best_model_insomnia.pkl")
 
 with st.sidebar:
+    image2 = Image.open("Logo.jpg")
+    st.image(image2)
     selected = option_menu(
         "Sweet Dream 💤 : Main Menu",
-        ["Introduction", "Sleep Efficiency Predictor", "Sleep Disorder Predictor"],
+        ["🥱 Introduction", "😴 Sleep Efficiency Predictor", "😪 Sleep Disorder Predictor"],
         default_index=0,
     )
 if selected == "Introduction":
@@ -51,10 +53,10 @@ elif selected == "Sleep Efficiency Predictor":
     valid_input = False
     while not valid_input:
         rem_percentage = st.slider(
-            "Percentage of REM sleep:", min_value=0, max_value=100)
+            "Percentage of REM (Rapid Eye Movement) sleep:", min_value=0, max_value=100)
         max_deep_percentage = 100 - rem_percentage
         deep_percentage = st.slider(
-            "Percentage of deep sleep:",
+            "Percentage of Deep Sleep:",
             min_value=0,
             max_value=max_deep_percentage,
             value=0,
@@ -74,7 +76,7 @@ elif selected == "Sleep Efficiency Predictor":
     light_placeholder = st.empty()
 
     # Update the displayed value of light sleep percentage
-    light_placeholder.text("Percentage of light sleep: {}".format(light_percentage))
+    light_placeholder.text("Percentage of Light Sleep: {}".format(light_percentage))
 
     awakenings = st.number_input("Enter the number of awakenings:", min_value=0)
     caffeine_consumption = st.number_input(
@@ -166,10 +168,9 @@ elif selected == "Sleep Efficiency Predictor":
            st.write(predicted_sleep_efficiency)
 
 elif selected == "Sleep Disorder Predictor":
-    st.title("Sweet Dream 💤")
-    st.header("Sleep Disorder Predictor")
-    st.header("[Imsomnia / Sleep Apnea]")
-
+    st.title("Sweet Dream 💤") 
+    st.header("Sleep Disorder Predictor [Imsomnia / Sleep Apnea]")
+  
     # Gender input
     gender = st.radio("Enter your gender:", ("Male", "Female"))
 
