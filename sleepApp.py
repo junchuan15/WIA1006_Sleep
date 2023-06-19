@@ -132,8 +132,8 @@ elif selected == "😴 Sleep Efficiency Predictor":
                 input_array = user_input_df.values
 
             if len(input_array.shape) == 1:
-                input_array = input_array.reshape(1, -1)
-                predicted_sleep_efficiency = model1.predict(input_array)
+             input_array = input_array.reshape(1, -1)
+            predicted_sleep_efficiency = model1.predict(input_array)
 
             # Classify the predicted sleep efficiency into categories
             if predicted_sleep_efficiency < 0.3:
