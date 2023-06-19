@@ -11,9 +11,6 @@ model1 = joblib.load(r"best_sleepefficiency_model.pkl")
 model2 = joblib.load(r"best_model_sleep_apnea.pkl")
 model3 = joblib.load(r"best_model_insomnia.pkl")
 
-gender_mapping = {'Yes': 1, 'No': 0}
-smoking_mapping = {'Yes': 1, 'No': 0}
-
 with st.sidebar:
     selected = option_menu(
         "Sweet Dream 💤 : Main Menu",
@@ -84,6 +81,8 @@ elif selected == "Sleep Efficiency Predictor":
         "Choose your exercise frequency (days per week):", (0, 1, 2, 3, 4, 5, 6, 7)
     )
     
+    gender_mapping = {'Yes': 1, 'No': 0}
+    smoking_mapping = {'Yes': 1, 'No': 0}
     gender_val = gender_mapping[gender]
     smoking_val = smoking_mapping[smoking_status]
     awakenings_float = float(awakenings) if awakenings else 0.0
