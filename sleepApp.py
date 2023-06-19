@@ -14,7 +14,7 @@ model3 = joblib.load(r"best_model_insomnia.pkl")
 
 with st.sidebar:
     image2 = Image.open("Logo.jpg")
-    st.image(image2)
+    st.image(image2, use_column_width=True)
     selected = option_menu(
         "Sweet Dream 💤 : Main Menu",
         ["🥱 Introduction", "😴 Sleep Efficiency Predictor", "😪 Sleep Disorder Predictor"],
