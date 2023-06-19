@@ -21,7 +21,7 @@ with st.sidebar:
 if selected == "Introduction":
     st.title("Sweet Dream 💤")
     st.header("Introduction")
-    image = Image.open("C:\UM\Y1S2\WID 3006 MACHINE LEARNING\Assignment\WIA1006_Sleep\WIA1006_Sleep\107117795-1663089124744-GettyImages-1322786038.jpg")
+    image = Image.open(r"C:\UM\Y1S2\WID 3006 MACHINE LEARNING\Assignment\WIA1006_Sleep\WIA1006_Sleep\107117795-1663089124744-GettyImages-1322786038.jpg")
     st.image(image, caption="Your Image", use_column_width=True)
     st.header("__________________________________________")
     text = """
