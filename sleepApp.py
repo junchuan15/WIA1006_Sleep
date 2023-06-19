@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from streamlit_option_menu import option_menu
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 
 # Load the saved model
 model1 = joblib.load(r"best_sleepefficiency_model.pkl")
@@ -110,7 +110,7 @@ elif selected == "Sleep Efficiency Predictor":
     # Display a button to trigger the prediction
     if st.button("Predict Sleep Efficiency"):
 
-        scaler = MinMaxScaler()
+        scaler = StandardScaler()
 
         # Perform standardization on the user_input_df DataFrame
         scaled_user_input = scaler.fit_transform(user_input_df)
