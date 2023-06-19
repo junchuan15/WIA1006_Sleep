@@ -46,7 +46,7 @@ if selected == "🥱 Introduction":
 
 elif selected == "😴 Sleep Efficiency Predictor":
      menu_options = ["About", "Predictor"]
-     option = st.radio("Menu:", menu_options, index=0)
+     option = st.button("Menu:", menu_options, index=0)
 
      if option == "About":
             st.subheader("About Sleep Efficiency Predictor")
