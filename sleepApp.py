@@ -81,7 +81,7 @@ elif selected == "Sleep Efficiency Predictor":
         "Choose your exercise frequency (days per week):", (0, 1, 2, 3, 4, 5, 6, 7)
     )
     
-    gender_mapping = {'Yes': 1, 'No': 0}
+    gender_mapping = {'Male': 1, 'Female': 0}
     smoking_mapping = {'Yes': 1, 'No': 0}
     gender_val = gender_mapping[gender]
     smoking_val = smoking_mapping[smoking_status]
